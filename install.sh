@@ -9,4 +9,4 @@ ln -f ./atom/init.coffee ~/.atom/init.coffee
 ln -f ./atom/config.cson ~/.atom/config.cson
 
 # Powerline Theme
-ln -f ./themes/powerline.zsh-theme ~/.oh-my-zsh/themes/powerline.zsh-theme
+ln -f ./themes/mark.zsh-theme ~/.oh-my-zsh/themes/mark.zsh-theme
