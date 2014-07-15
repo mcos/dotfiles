@@ -1,10 +1,13 @@
 'editor':
   'fontSize': 12
+  'fontFamily': 'Anonymous Pro'
+  'showIndentGuide': true
 'core':
   'themes': [
     'atom-dark-ui'
     'atom-dark-syntax'
   ]
+  'useReactEditor': true
 'exception-reporting':
   'userId': 'edc5c3ef-7a1b-cfe4-699f-e8d9a2fcc5d1'
 'welcome':
