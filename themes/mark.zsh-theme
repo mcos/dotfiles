@@ -102,8 +102,9 @@ if [ $(id -u) -eq 0 ]; then
     POWERLINE_SEC1_BG=%K{red}
     POWERLINE_SEC1_FG=%F{red}
 else
-    POWERLINE_SEC1_BG=%K{green}
-    POWERLINE_SEC1_FG=%F{green}
+    # Color 029 is a nice bluey-green color
+    POWERLINE_SEC1_BG=%K{029}
+    POWERLINE_SEC1_FG=%F{029}
 fi
 POWERLINE_SEC1_TXT=%F{black}
 if [ "$POWERLINE_DETECT_SSH" != "" ]; then
