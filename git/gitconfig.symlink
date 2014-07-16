@@ -1,3 +1,39 @@
 [user]
 	name = Mark Costello
 	email = mark@markcostello.net
+
+[include]
+  # For username / creds / etc
+  path = ~/.gitconfig.local
+
+[push]
+  default = current # this should be the safe default.  Without this, by default, 'git push' will push all branches, possibly pushing unintended changes
+
+[merge]
+  # This is REALLY useful.  Adds 'original_version' to diffs like so:
+  # <<<<<<<
+  # OUR_VERSION
+  # |||||||
+  # ORIGNINAL_VERSION
+  # =======
+  # THEIR_VERSION
+  # >>>>>>>
+  conflictstyle = diff3
+  defaultToUpstream = true
+
+[core]
+	editor = atom
+
+[format]
+  pretty = fuller # more detail for "git show"
+
+[color]
+  ui = true # everybody loves color (except for Linus :( )
+
+[column]
+  # This lets "git stat" stack multiple filenames per row (like vanilla 'ls')
+  ui = always
+
+[merge]
+    ff = no
+    commit = no

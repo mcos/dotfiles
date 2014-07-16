@@ -1,11 +1,12 @@
 'editor':
   'fontSize': 12
   'fontFamily': 'Anonymous Pro'
+  'showInvisibles': true
   'showIndentGuide': true
 'core':
   'themes': [
-    'atom-dark-ui'
-    'atom-dark-syntax'
+    'atom-soda-dark-ui'
+    'base16-tomorrow-dark-theme'
   ]
   'useReactEditor': true
 'exception-reporting':
