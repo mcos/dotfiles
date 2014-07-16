@@ -9,6 +9,7 @@
 [alias]
 	ch = checkout
 	cm = commit -m
+	po = push origin
 	st = status
 
 [push]
