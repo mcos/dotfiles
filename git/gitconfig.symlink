@@ -6,6 +6,11 @@
   # For username / creds / etc
   path = ~/.gitconfig.local
 
+[alias]
+	ch = checkout
+	cm = commit -m
+	st = status
+
 [push]
   default = current # this should be the safe default.  Without this, by default, 'git push' will push all branches, possibly pushing unintended changes
 
