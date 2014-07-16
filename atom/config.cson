@@ -1,6 +1,6 @@
 'editor':
-  'fontSize': 12
-  'fontFamily': 'Anonymous Pro'
+  'fontSize': 14
+  'fontFamily': 'Inconsolata-dz for Powerline'
   'showInvisibles': true
   'showIndentGuide': true
 'core':

@@ -357,6 +357,11 @@ defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
 defaults write com.apple.DiskUtility advanced-image-options -bool true
 printf "...done\n"
 
+# Close Terminal windows when TotalTerminal starts"
+printf "> Close Terminal windows when TotalTerminalStarts..."
+defaults write com.apple.Terminal TotalTerminalCloseWindowsOnStart -bool YES
+printf "...\n"
+
 ###############################################################################
 # Google Chrome & Google Chrome Canary                                        #
 ###############################################################################
