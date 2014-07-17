@@ -6,12 +6,26 @@
 'core':
   'themes': [
     'atom-soda-dark-ui'
-    'base16-tomorrow-dark-theme'
+    'Pastel'
   ]
   'useReactEditor': true
+  'ignoredNames': [
+    '.pyc'
+  ]
 'exception-reporting':
   'userId': 'edc5c3ef-7a1b-cfe4-699f-e8d9a2fcc5d1'
 'welcome':
   'showOnStartup': false
 'metrics':
   'userId': 'd8d07c754c48ac0de4b951584c62dc0162ffbd65'
+'syntax-settings':
+  'source':
+    'python':
+      'editorSettings':
+        'tabLength': 4
+      'editorViewSettings':
+        'showInvisibles': true
+        'softWrap': false
+        'showIndentGuide': true
+      'gutterViewSettings':
+        'showLineNumbers': true
