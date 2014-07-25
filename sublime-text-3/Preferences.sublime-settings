@@ -1,0 +1,40 @@
+{
+	"auto_complete": false,
+	"close_windows_when_empty": false,
+	"color_scheme": "Packages/User/Tomorrow-Night (SL).tmTheme",
+	"draw_white_space": "all",
+	"ensure_newline_at_eof_on_save": true,
+	"find_selected_text": true,
+	"fold_buttons": false,
+	"folder_exclude_patterns":
+	[
+		".svn",
+		".git",
+		".hg",
+		"CVS",
+		"_build",
+		"dist",
+		"build",
+		"site"
+	],
+	"font_face": "Ubuntu Mono derivative Powerline",
+	"font_options":
+	[
+		"subpixel_antialias"
+	],
+	"font_size": 13.0,
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"rulers":
+	[
+		92,
+		99
+	],
+	"theme": "Flatland Dark.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"flatland_square_tabs": true,
+}

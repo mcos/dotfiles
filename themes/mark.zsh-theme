@@ -87,9 +87,9 @@ ZSH_THEME_GIT_PROMPT_DIVERGED=" ⬍"
 # else
     if [ "$POWERLINE_SHOW_GIT_ON_RIGHT" = "" ]; then
         if [ "$POWERLINE_HIDE_GIT_PROMPT_STATUS" = "" ]; then
-            POWERLINE_GIT_INFO_LEFT=" %F{blue}%K{white}"$'\ue0b0'"%F{white}%F{black}%K{white}"$'$(git_prompt_info)$(git_prompt_status)%F{white}'
+            POWERLINE_GIT_INFO_LEFT=" %F{white}%K{178}"$'\ue0b0'"%F{178}%F{black}%K{178}"$'$(git_prompt_info)$(git_prompt_status)%F{178}'
         else
-            POWERLINE_GIT_INFO_LEFT=" %F{blue}%K{white}"$'\ue0b0'"%F{white}%F{black}%K{white}"$'$(git_prompt_info)%F{white}'
+            POWERLINE_GIT_INFO_LEFT=" %F{white}%K{178}"$'\ue0b0'"%F{178}%F{black}%K{178}"$'$(git_prompt_info)%F{178}'
         fi
         POWERLINE_GIT_INFO_RIGHT=""
     else
@@ -114,7 +114,7 @@ if [ "$POWERLINE_DETECT_SSH" != "" ]; then
     POWERLINE_SEC1_TXT=%F{white}
   fi
 fi
-PROMPT="$POWERLINE_SEC1_BG$POWERLINE_SEC1_TXT $POWERLINE_USER_NAME %k%f$POWERLINE_SEC1_FG%K{178}"$'\ue0b0'"%k%f%F{black}%K{178} "$POWERLINE_CURRENT_PATH"%F{178}"$POWERLINE_GIT_INFO_LEFT" %k"$'\ue0b0'"%f "
+PROMPT="$POWERLINE_SEC1_BG$POWERLINE_SEC1_TXT $POWERLINE_USER_NAME %k%f$POWERLINE_SEC1_FG%K{white}"$'\ue0b0'"%k%f%F{black}%K{white} "$POWERLINE_CURRENT_PATH"%F{white}"$POWERLINE_GIT_INFO_LEFT" %k"$'\ue0b0'"%f "
 
 # if [ "$POWERLINE_NO_BLANK_LINE" = "" ]; then
 #     PROMPT="

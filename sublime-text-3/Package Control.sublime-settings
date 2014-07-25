@@ -1,0 +1,14 @@
+{
+	"installed_packages":
+	[
+		"Git",
+		"GitHub Flavored Markdown Preview",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeLinter-flake8",
+		"Theme - Flatland",
+		"Theme - Soda",
+		"Theme - Soda SolarizedDark",
+		"Tomorrow Color Schemes"
+	]
+}

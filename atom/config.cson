@@ -3,6 +3,7 @@
   'fontFamily': 'Inconsolata-dz for Powerline'
   'showInvisibles': true
   'showIndentGuide': true
+  'preferredLineLength': 100
 'core':
   'themes': [
     'atom-soda-dark-ui'
@@ -10,7 +11,10 @@
   ]
   'useReactEditor': true
   'ignoredNames': [
-    '.pyc'
+    '*.pyc'
+  ]
+  'disabledPackages': [
+    'metrics'
   ]
 'exception-reporting':
   'userId': 'edc5c3ef-7a1b-cfe4-699f-e8d9a2fcc5d1'
@@ -29,3 +33,7 @@
         'showIndentGuide': true
       'gutterViewSettings':
         'showLineNumbers': true
+'whitespace':
+  'ignoreWhitespaceOnCurrentLine': false
+'tree-view':
+  'hideIgnoredNames': true

@@ -1,0 +1,9 @@
+{
+	"user":
+	{
+		"lint_mode": "load/save",
+		"linters":
+		{
+		}
+	}
+}
