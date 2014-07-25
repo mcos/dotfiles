@@ -10,6 +10,9 @@ export DOTFILES=$HOME/dotfiles
 # time that oh-my-zsh is loaded.
 ZSH_THEME="powerline"
 
+# Disable the RPROMPT
+POWERLINE_DISABLE_RPROMPT="true"
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
