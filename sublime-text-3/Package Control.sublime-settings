@@ -1,8 +1,11 @@
 {
 	"installed_packages":
 	[
+		"DocBlockr",
 		"Git",
 		"GitHub Flavored Markdown Preview",
+		"HTML-CSS-JS Prettify",
+		"SideBarEnhancements",
 		"SublimeCodeIntel",
 		"SublimeLinter",
 		"SublimeLinter-flake8",

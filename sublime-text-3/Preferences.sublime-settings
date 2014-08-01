@@ -5,6 +5,7 @@
 	"draw_white_space": "all",
 	"ensure_newline_at_eof_on_save": true,
 	"find_selected_text": true,
+	"flatland_square_tabs": true,
 	"fold_buttons": false,
 	"folder_exclude_patterns":
 	[
@@ -22,7 +23,7 @@
 	[
 		"subpixel_antialias"
 	],
-	"font_size": 13.0,
+	"font_size": 14.0,
 	"highlight_line": true,
 	"ignored_packages":
 	[
@@ -30,11 +31,10 @@
 	],
 	"rulers":
 	[
-		92,
-		99
+		99,
+		119
 	],
 	"theme": "Flatland Dark.sublime-theme",
 	"translate_tabs_to_spaces": true,
-	"trim_trailing_white_space_on_save": true,
-	"flatland_square_tabs": true,
+	"trim_trailing_white_space_on_save": true
 }
