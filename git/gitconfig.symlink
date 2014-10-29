@@ -36,6 +36,7 @@
 
 [core]
 	editor = subl
+	excludesfile = ~/.gitignore
 
 [format]
   pretty = fuller # more detail for "git show"

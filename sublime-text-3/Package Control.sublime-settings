@@ -1,14 +1,18 @@
 {
 	"installed_packages":
 	[
+		"Better CoffeeScript",
 		"DocBlockr",
 		"Git",
-		"GitHub Flavored Markdown Preview",
 		"HTML-CSS-JS Prettify",
+		"LESS",
+		"Markdown Preview",
+		"Phpcs",
 		"SideBarEnhancements",
 		"SublimeCodeIntel",
 		"SublimeLinter",
 		"SublimeLinter-flake8",
+		"TabsExtra",
 		"Theme - Flatland",
 		"Theme - Soda",
 		"Theme - Soda SolarizedDark",
