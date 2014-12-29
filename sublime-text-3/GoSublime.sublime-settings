@@ -1,0 +1,9 @@
+{
+    "fmt_cmd": ["goimports"],
+
+    "on_save": [
+        {"cmd": "gs_fmt"},
+        {"cmd": "gs_comp_lint"},
+        {"cmd": ["go", "vet"]}
+    ]
+}

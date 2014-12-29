@@ -36,7 +36,7 @@
 
 [core]
 	editor = subl
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/mark/.gitignore
 
 [format]
   pretty = fuller # more detail for "git show"
@@ -48,3 +48,11 @@
   # This lets "git stat" stack multiple filenames per row (like vanilla 'ls')
   # ui = always
 
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.3/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
