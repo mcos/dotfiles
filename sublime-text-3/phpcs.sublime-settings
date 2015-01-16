@@ -1,0 +1,12 @@
+{
+    "php_executable_path": "/usr/local/bin/phpcs",
+    "php_cs_fixer_executable_path": "/usr/local/bin/php-cs-fixer",
+    "phpmd_run": true,
+    "phpmd_executable_path": "/usr/local/bin/phpmd",
+    "phpcs_additional_args": {
+        "--standard": "PSR2",
+        "-n": "",
+        "--warning-severity": 6,
+        "--encoding": "utf-8"
+    },
+}

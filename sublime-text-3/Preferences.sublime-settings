@@ -1,10 +1,15 @@
 {
 	"auto_complete": false,
+	"caret_extra_width": 1,
+	"caret_style": "phase",
 	"close_windows_when_empty": false,
-	"color_scheme": "Packages/User/Tomorrow-Night (SL).tmTheme",
+	"color_scheme": "Packages/User/SublimeLinter/Tomorrow-Night (SL).tmTheme",
+	"drag_text": false,
 	"draw_white_space": "all",
+	"enable_tab_scrolling": false,
 	"ensure_newline_at_eof_on_save": true,
 	"find_selected_text": true,
+	"findreplace_small": true,
 	"flatland_square_tabs": true,
 	"fold_buttons": false,
 	"folder_exclude_patterns":
@@ -28,12 +33,20 @@
 	[
 		"Vintage"
 	],
+	"open_files_in_new_window": false,
+	"overlay_scroll_bars": "enabled",
+	"preview_on_click": false,
 	"rulers":
 	[
 		99,
 		119
 	],
-	"theme": "Flatland Dark.sublime-theme",
+	"scroll_speed": 5.0,
+	"show_full_path": true,
+	"sidebar_xsmall": true,
+	"tabs_small": true,
+	"theme": "predawn.sublime-theme",
 	"translate_tabs_to_spaces": true,
-	"trim_trailing_white_space_on_save": true
+	"trim_trailing_white_space_on_save": true,
+	"word_wrap": false
 }

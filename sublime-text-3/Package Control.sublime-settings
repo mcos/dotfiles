@@ -1,4 +1,12 @@
 {
+	"in_process_packages":
+	[
+	],
+	"installed_dependencies":
+	[
+		"0_package_control_loader",
+		"bz2"
+	],
 	"installed_packages":
 	[
 		"Better CoffeeScript",
@@ -11,13 +19,14 @@
 		"Markdown Preview",
 		"Package Control",
 		"Phpcs",
+		"Predawn",
 		"SideBarEnhancements",
 		"SublimeCodeIntel",
 		"SublimeLinter",
 		"SublimeLinter-flake8",
 		"SublimeLinter-phpcs",
-		"TabsExtra",
 		"Theme - Flatland",
+		"Theme - Glacier",
 		"Theme - Soda",
 		"Theme - Soda SolarizedDark",
 		"Tomorrow Color Schemes"

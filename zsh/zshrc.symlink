@@ -57,6 +57,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Firefox binary
+export FIREFOX_BIN=$HOME/Applications/Firefox.app/Contents/MacOS/firefox-bin
+
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
