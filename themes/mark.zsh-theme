@@ -81,21 +81,16 @@ setprompt () {
   ZSH_THEME_GIT_PROMPT_BEHIND=" ⬇"
   ZSH_THEME_GIT_PROMPT_DIVERGED=" ⬍"
 
-  # if [ "$(git_prompt_info)" = "" ]; then
-     # POWERLINE_GIT_INFO_LEFT=""
-     # POWERLINE_GIT_INFO_RIGHT=""
+  # if [ "$POWERLINE_SHOW_GIT_ON_RIGHT" = "" ]; then
+  #     if [ "$POWERLINE_HIDE_GIT_PROMPT_STATUS" = "" ]; then
+  #         POWERLINE_GIT_INFO_LEFT=" %F{white}%K{178}"$'\ue0b0'"%F{178}%F{black}%K{178}"$'$(git_prompt_info)$(git_prompt_status)%F{178}'
+  #     else
+  #         POWERLINE_GIT_INFO_LEFT=" %F{white}%K{178}"$'\ue0b0'"%F{178}%F{black}%K{178}"$'$(git_prompt_info)%F{178}'
+  #     fi
+  #     POWERLINE_GIT_INFO_RIGHT=""
   # else
-      if [ "$POWERLINE_SHOW_GIT_ON_RIGHT" = "" ]; then
-          if [ "$POWERLINE_HIDE_GIT_PROMPT_STATUS" = "" ]; then
-              POWERLINE_GIT_INFO_LEFT=" %F{white}%K{178}"$'\ue0b0'"%F{178}%F{black}%K{178}"$'$(git_prompt_info)$(git_prompt_status)%F{178}'
-          else
-              POWERLINE_GIT_INFO_LEFT=" %F{white}%K{178}"$'\ue0b0'"%F{178}%F{black}%K{178}"$'$(git_prompt_info)%F{178}'
-          fi
-          POWERLINE_GIT_INFO_RIGHT=""
-      else
-          POWERLINE_GIT_INFO_LEFT=""
-          POWERLINE_GIT_INFO_RIGHT="%F{white}""%F{black}%K{white}"$'$(git_prompt_info)'" %K{white}"
-      fi
+  #     POWERLINE_GIT_INFO_LEFT=""
+  #     POWERLINE_GIT_INFO_RIGHT="%F{white}""%F{black}%K{white}"$'$(git_prompt_info)'" %K{white}"
   # fi
 
   if [ $(id -u) -eq 0 ]; then
@@ -106,7 +101,9 @@ setprompt () {
       POWERLINE_SEC1_BG=%K{029}
       POWERLINE_SEC1_FG=%F{029}
   fi
+
   POWERLINE_SEC1_TXT=%F{black}
+
   if [ "$POWERLINE_DETECT_SSH" != "" ]; then
     if [ -n "$SSH_CLIENT" ]; then
       POWERLINE_SEC1_BG=%K{red}
@@ -114,12 +111,8 @@ setprompt () {
       POWERLINE_SEC1_TXT=%F{white}
     fi
   fi
-  PROMPT="$POWERLINE_SEC1_BG$POWERLINE_SEC1_TXT $POWERLINE_USER_NAME %k%f$POWERLINE_SEC1_FG%K{white}"$'\ue0b0'"%k%f%F{black}%K{white} "$POWERLINE_CURRENT_PATH"%F{white}"$POWERLINE_GIT_INFO_LEFT" %k""%f "
 
-  # if [ "$POWERLINE_NO_BLANK_LINE" = "" ]; then
-  #     PROMPT="
-  # "$PROMPT
-  # fi
+  # PROMPT="$POWERLINE_SEC1_BG$POWERLINE_SEC1_TXT $POWERLINE_USER_NAME %k%f$POWERLINE_SEC1_FG%K{white}"$'\ue0b0'"%k%f%F{black}%K{white} "$POWERLINE_CURRENT_PATH"%F{white}"$POWERLINE_GIT_INFO_LEFT" %k""%f "
 
   PROMPT=$'\u2308 '$PROMPT$'\n'$'\u230A '"$ "
 

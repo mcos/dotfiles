@@ -1,2 +1,5 @@
-# gvm use go1.2.1 > /dev/null 2>&1
+# Initialize GVM
+[[ -s "/Users/mark/.gvm/scripts/gvm" ]] && source "/Users/mark/.gvm/scripts/gvm"
+
+export GOPATH=$HOME/.go
 export PATH="${GOPATH//://bin:}/bin:$PATH"

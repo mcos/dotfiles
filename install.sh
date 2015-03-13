@@ -10,6 +10,7 @@ ln -f ./atom/config.cson ~/.atom/config.cson
 
 # Powerline Theme
 ln -f ./themes/mark.zsh-theme ~/.oh-my-zsh/themes/mark.zsh-theme
+ln -f ./themes/mark-bira.zsh-theme ~/.oh-my-zsh/themes/mark-bira.zsh-theme
 
 # Run OSX install script
 ./osx/set-defaults.sh

@@ -8,7 +8,7 @@ export DOTFILES=$HOME/dotfiles
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="powerline"
+ZSH_THEME="mark-bira"
 
 # Disable the RPROMPT
 POWERLINE_DISABLE_RPROMPT="true"
@@ -121,5 +121,8 @@ do
   source $file
 done
 
-unset config_files
-[[ -s "/Users/mark/.gvm/scripts/gvm" ]] && source "/Users/mark/.gvm/scripts/gvm"
+# Special case for an emacs shell
+#if [[ -n ${INSIDE_EMACS} ]]; then
+    # This shell runs inside an Emacs *shell*/*term* buffer.
+#    unsetopt zle
+#fi
