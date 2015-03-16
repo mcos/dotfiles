@@ -19,7 +19,8 @@
                       go-mode
                       php-mode
                       ws-butler
-                      flycheck)
+                      flycheck
+                      helm)
   "A list of packages that should be installed at launch")
 
 ;; Make sure the packages are up to date

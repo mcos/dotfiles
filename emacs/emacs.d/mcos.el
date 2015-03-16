@@ -109,3 +109,6 @@
 ;; Remap Kill-Region to C-x C-k
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
+
+;; Magit Status
+(global-set-key (kbd "C-x g") 'magit-status)
