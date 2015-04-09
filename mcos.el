@@ -2,6 +2,8 @@
 (setq dotfiles-dir (file-name-directory
                     (or (buffer-file-name) load-file-name)))
 
+(add-to-list 'load-path (concat dotfiles-dir "custom"))
+
 ;; Need some Common Lisp Here
 (require 'cl)
 
@@ -9,9 +11,18 @@
 (require 'projectile)
 (projectile-global-mode)
 
+;; RET Behaves as LFD
+;; Do this so that return will also indent. Very cool.
+(defun RET-behaves-as-LFD ()
+  (let ((x (key-binding "\C-j")))
+    (local-set-key "\C-m" x)))
+
 ;; Company Mode - Autocompletion
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
+(setq company-idle-delay .2)           ; Set the popup delay to 0.25 seconds
+(setq company-minimum-prefix-length 1)
+(setq company-tooltip-limit 20)
 
 ;; Auto Pair everything
 (require 'autopair)
@@ -32,6 +43,9 @@
 ;; Turn off the silly startup message
 (setq inhibit-startup-message t)
 
+;; Winner mode
+(winner-mode 1)
+
 ;; Show whitespace by default
 (require 'ws-butler)
 (ws-butler-global-mode)
@@ -49,11 +63,39 @@
 ;; Flycheck Syntax Checking
 (add-hook 'after-init-hook 'global-flycheck-mode)
 
+;; Rename a file and a buffer
+(defun rename-file-and-buffer (new-name)
+  "Renames both current buffer and file it's visiting to NEW-NAME."
+  (interactive "sNew name: ")
+  (let ((name (buffer-name))
+ (filename (buffer-file-name)))
+    (if (not filename)
+ (message "Buffer '%s' is not visiting a file!" name)
+      (if (get-buffer new-name)
+   (message "A buffer named '%s' already exists!" new-name)
+ (progn
+   (rename-file name new-name 1)
+   (rename-buffer new-name)
+   (set-visited-file-name new-name)
+   (set-buffer-modified-p nil))))))
+
 ;;;;;;;;;;;;;;;;;
 ;; Go Specific ;;
 ;;;;;;;;;;;;;;;;;
 (require 'go-mode)
 (require 'company-go)
+(require 'go-eldoc)
+
+;; Set the GOPATH to $HOME/.go
+;; That's what I use as my global GOPATH, because I'm a monster
+;; In the future, maybe I'll get around to running emacs in server mode, then
+;; I won't have to do things like this all the time
+
+(setenv "GOPATH" "$HOME/.go")
+
+;; Go-oracle
+(load-file (concat (getenv "GOPATH") "/src/golang.org/x/tools/cmd/oracle/oracle.el"))
+
 ;; Custom go-mode hook
 (add-hook 'go-mode-hook (lambda ()
   "Custom Go Mode Hook"
@@ -69,15 +111,23 @@
         '(("type" "^type *\\([^ \t\n\r\f]*\\)" 1)
           ("func" "^func *\\(.*\\) {" 1)))
   (imenu-add-to-menubar "Index")
-  (set (make-local-variable 'company-backends) '(company-go))))
+  (set (make-local-variable 'company-backends) '(company-go))
 
-;;;;;;;;;;;;;;
-;; PHP-Mode ;;
-;;;;;;;;;;;;;;
-(autoload 'php-mode "php-mode" "Major mode for PHP work." t)
-(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
-(add-hook 'php-mode-hook
-          (setq flycheck-phpcs-standard "PSR2"))
+  ;; Go-Oracle-Mode
+  (go-oracle-mode)
+
+  ;; Go-eldoc
+  (go-eldoc-setup)
+
+  ;; Key Bindings
+  (local-set-key (kbd "M-.") 'godef-jump)
+  (local-set-key (kbd "C-c t .") 'go-test-current-test)
+  (local-set-key (kbd "C-c t f") 'go-test-current-file)
+  (local-set-key (kbd "C-c t p") 'go-test-current-project)))
+
+;;;;;;;;;;;;;;;;;
+;;;;;  /go  ;;;;;
+;;;;;;;;;;;;;;;;;
 
 ;; Load all projects into magit-repo-dirs
 (eval-after-load "projectile" 
@@ -112,3 +162,60 @@
 
 ;; Magit Status
 (global-set-key (kbd "C-x g") 'magit-status)
+
+;;;;;;;;;;;;;;
+;; PHP-Mode ;;
+;;;;;;;;;;;;;;
+(autoload 'php-mode "php-mode" "Major mode for PHP work." t)
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+(add-hook 'php-mode-hook
+          'php-enable-psr2-coding-style)
+;;           '(flycheck-phpcs-standard "PSR2")
+
+;; Doc block comments
+
+(define-skeleton class-doc-block
+        "Inserting doc block for class"
+        "This is ignoring"
+        "/**\n"
+        " * Short description for class\n"
+        " *\n"
+        " * Long description for class (if any)...\n"
+        " */"
+        "class"
+        '(indent-region (point-min) (point-max))
+        '(indent-according-to-mode)
+)
+
+(define-skeleton function-doc-block
+        "Inserting doc block for function/method"
+        "This is ignoring"
+        "/**\n"
+        " * Description for method\n"
+        " *\n"
+        " * @param data_type $parameterName Parameter description\n"
+        " * @return data_type Return value description\n"
+        " */"
+        '(indent-region (point-min) (point-max))
+        '(indent-according-to-mode)
+)
+
+(define-skeleton variable-doc-block
+        "Inserting doc block for variable"
+        nil
+        "/**\n"
+        " * Description for variable - class member\n"
+        " * \n"
+        " * @type data_type \n"
+        " */"
+        '(indent-region (point-min) (point-max))
+        '(indent-according-to-mode)
+)
+
+(add-hook 'php-mode-hook
+        (lambda ()
+        (define-key php-mode-map (kbd "C-c M-c") 'class-doc-block)
+        (define-key php-mode-map (kbd "C-c M-f") 'function-doc-block)
+        (define-key php-mode-map (kbd "C-c M-v") 'variable-doc-block)
+        (RET-behaves-as-LFD))
+        )

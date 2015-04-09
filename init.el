@@ -20,7 +20,9 @@
                       php-mode
                       ws-butler
                       flycheck
-                      helm)
+                      helm
+                      el-get
+                      go-eldoc)
   "A list of packages that should be installed at launch")
 
 ;; Make sure the packages are up to date
