@@ -126,3 +126,6 @@ done
     # This shell runs inside an Emacs *shell*/*term* buffer.
 #    unsetopt zle
 #fi
+
+# added by travis gem
+[ -f /Users/mark/.travis/travis.sh ] && source /Users/mark/.travis/travis.sh

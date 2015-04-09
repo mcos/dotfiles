@@ -1,61 +1,64 @@
 [user]
-	name = Mark Costello
-	email = mark@markcostello.net
+name = Mark Costello
+email = mark@markcostello.net
 
 [include]
-  # For username / creds / etc
-  path = ~/.gitconfig.local
+# For username / creds / etc
+path = ~/.gitconfig.local
 
 [alias]
-	ch = checkout
-  cm = commit
-	cmm = commit -m
-	st = status
-  br = branch
-  brr = branch -r
-  brv = branch -v
-  brrv = branch -rv
-  brd = for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:short) %(authorname) %(refname:short)'  # Shows local branches sorted by date
-  # whowrote = blame
+ch = checkout
+cm = commit
+cmm = commit -m
+st = status
+br = branch
+brr = branch -r
+brv = branch -v
+brrv = branch -rv
+brd = for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:short) %(authorname) %(refname:short)'  # Shows local branches sorted by date
+who = blame
 
 [push]
-  default = current # this should be the safe default.  Without this, by default, 'git push' will push all branches, possibly pushing unintended changes
+default = current # this should be the safe default.  Without this, by default, 'git push' will push all branches, possibly pushing unintended changes
 
 [merge]
-  # This is REALLY useful.  Adds 'original_version' to diffs like so:
-  # <<<<<<<
-  # OUR_VERSION
-  # |||||||
-  # ORIGNINAL_VERSION
-  # =======
-  # THEIR_VERSION
-  # >>>>>>>
-  conflictstyle = diff3
-  defaultToUpstream = true
-  ff = no
-  commit = no
+# This is REALLY useful.  Adds 'original_version' to diffs like so:
+# <<<<<<<
+# OUR_VERSION
+# |||||||
+# ORIGINAL_VERSION
+# =======
+# THEIR_VERSION
+# >>>>>>>
+conflictstyle = diff3
+defaultToUpstream = true
+ff = no
+commit = no
 
 [core]
-	# editor = subl
-	excludesfile = /Users/mark/.gitignore
+excludesfile = /Users/mark/.gitignore
+editor = emacs
 
 [format]
-  pretty = fuller # more detail for "git show"
+pretty = fuller # more detail for "git show"
 
 [color]
-  ui = true # everybody loves color (except for Linus :( )
+ui = true # everybody loves color (except for Linus :( )
 
 [column]
-  # This lets "git stat" stack multiple filenames per row (like vanilla 'ls')
-  # ui = always
+# This lets "git stat" stack multiple filenames per row (like vanilla 'ls')
+# ui = always
 
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+insteadOf = https://github.com/
+
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+path =
+
 [mergetool "sourcetree"]
-	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.3/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.3/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+trustExitCode = true
+
 [http]
-	cookiefile = /Users/mark/.gitcookies
+cookiefile = ~/.gitcookies
