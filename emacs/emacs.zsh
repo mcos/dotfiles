@@ -1,1 +1,1 @@
-alias emacs="open -a $HOME/Applications/Emacs.app $@"
+alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs \"$@\""
