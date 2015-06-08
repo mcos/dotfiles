@@ -2,11 +2,12 @@
 # This is a customized version of the "bira" theme from
 # https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/bira.zsh-theme
 # I just removed the rvm info
+# Also, switched everhthing to black and white
 
-local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
+local return_code="%(?..%{$fg[white]%}%? ↵%{$reset_color%})"
 
-local user_host='%{$terminfo[bold]$fg[green]%}%n@%m%{$reset_color%}'
-local current_dir='%{$terminfo[bold]$fg[blue]%} %~%{$reset_color%}'
+local user_host='%{$terminfo[bold]$fg[white]%}%n@%m%{$reset_color%}'
+local current_dir='%{$terminfo[bold]$fg[white]%} %~%{$reset_color%}'
 
 local git_branch='$(git_prompt_info)%{$reset_color%}'
 
@@ -14,5 +15,8 @@ PROMPT="╭─${user_host} ${current_dir} ${git_branch}
 ╰─%B$%b "
 RPS1="${return_code}"
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[white]%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
+
+# LS Colors should be black and white
+export LSCOLORS=hahahahahahahahahahaha
