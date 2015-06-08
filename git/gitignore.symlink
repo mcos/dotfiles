@@ -4,3 +4,6 @@
 # Emacs Temp Files
 \#*\#
 .\#*
+GPATH
+GRTAGS
+GTAGS
