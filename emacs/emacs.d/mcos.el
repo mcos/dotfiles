@@ -4,8 +4,25 @@
 
 (add-to-list 'load-path (concat dotfiles-dir "custom"))
 
+;; Set fonts and stuff
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "gray7" :foreground "light gray" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 125 :width normal :foundry "nil" :family "DejaVu Sans Mono for Powerline")))))
+
+
 ;; Need some Common Lisp Here
 (require 'cl)
+
+;; Evil Mode
+(require 'evil)
+(evil-mode 1)
+
+;; Powerline
+(require 'powerline)
+(powerline-default-theme)
 
 ;; Projectile for Project Stuff
 (require 'projectile)
@@ -14,6 +31,7 @@
 ;; RET Behaves as LFD
 ;; Do this so that return will also indent. Very cool.
 (defun RET-behaves-as-LFD ()
+  (message "RET-behaves-as-LFD")
   (let ((x (key-binding "\C-j")))
     (local-set-key "\C-m" x)))
 
@@ -23,6 +41,7 @@
 (setq company-idle-delay .2)           ; Set the popup delay to 0.25 seconds
 (setq company-minimum-prefix-length 1)
 (setq company-tooltip-limit 20)
+(setq company-dabbrev-downcase nil)
 
 ;; Auto Pair everything
 (require 'autopair)
@@ -38,7 +57,10 @@
 (setq ring-bell-function 'ignore)
 
 ;; Color Theme
-(load-theme 'sanityinc-tomorrow-night t)
+(load-theme 'monochrome t)
+(set-face-attribute 'fringe nil
+                      :foreground (face-foreground 'default)
+                      :background (face-background 'default))
 
 ;; Turn off the silly startup message
 (setq inhibit-startup-message t)
@@ -61,7 +83,7 @@
 (setenv "ESHELL" (concat dotfiles-dir "eshell"))
 
 ;; Flycheck Syntax Checking
-(add-hook 'after-init-hook 'global-flycheck-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Rename a file and a buffer
 (defun rename-file-and-buffer (new-name)
@@ -79,55 +101,7 @@
    (set-visited-file-name new-name)
    (set-buffer-modified-p nil))))))
 
-;;;;;;;;;;;;;;;;;
-;; Go Specific ;;
-;;;;;;;;;;;;;;;;;
-(require 'go-mode)
-(require 'company-go)
-(require 'go-eldoc)
-
-;; Set the GOPATH to $HOME/.go
-;; That's what I use as my global GOPATH, because I'm a monster
-;; In the future, maybe I'll get around to running emacs in server mode, then
-;; I won't have to do things like this all the time
-
-(setenv "GOPATH" "$HOME/.go")
-
-;; Go-oracle
-(load-file (concat (getenv "GOPATH") "/src/golang.org/x/tools/cmd/oracle/oracle.el"))
-
-;; Custom go-mode hook
-(add-hook 'go-mode-hook (lambda ()
-  "Custom Go Mode Hook"
-  
-  ;; Use goimports instead of go-fmt
-  (setq gofmt-command "goimports")
-  
-  ;; Call Gofmt before saving
-  (add-hook 'before-save-hook 'gofmt-before-save)
-  
-  ;; Imenu & Speedbar
-  (setq imenu-generic-expression
-        '(("type" "^type *\\([^ \t\n\r\f]*\\)" 1)
-          ("func" "^func *\\(.*\\) {" 1)))
-  (imenu-add-to-menubar "Index")
-  (set (make-local-variable 'company-backends) '(company-go))
-
-  ;; Go-Oracle-Mode
-  (go-oracle-mode)
-
-  ;; Go-eldoc
-  (go-eldoc-setup)
-
-  ;; Key Bindings
-  (local-set-key (kbd "M-.") 'godef-jump)
-  (local-set-key (kbd "C-c t .") 'go-test-current-test)
-  (local-set-key (kbd "C-c t f") 'go-test-current-file)
-  (local-set-key (kbd "C-c t p") 'go-test-current-project)))
-
-;;;;;;;;;;;;;;;;;
-;;;;;  /go  ;;;;;
-;;;;;;;;;;;;;;;;;
+(add-to-list 'auto-mode-alist '("\\.php$" . go-mode))
 
 ;; Load all projects into magit-repo-dirs
 (eval-after-load "projectile" 
@@ -162,60 +136,117 @@
 
 ;; Magit Status
 (global-set-key (kbd "C-x g") 'magit-status)
+(setq magit-last-seen-setup-instructions "1.4.0")
+
+;;;;;;;;;;;;;;;;
+;; Helm Setup ;;
+;;;;;;;;;;;;;;;;
+(require 'helm)
+(require 'helm-config)
+
+;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
+
+(setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+      helm-display-header-line              nil
+      helm-autoresize-max-height            25
+      helm-autoresize-max-height            25)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+
+;; Set Up Helm-Ag to work with Projectile
+(defun projectile-helm-ag ()
+  (interactive)
+  (helm-ag (projectile-project-root)))
+
+(helm-autoresize-mode 1)
+(helm-mode 1)
+
+;; Org Mode
+(require 'org)
+(setq org-directory "~/Dropbox/org")
+(setq org-default-notes-file (concat org-directory "/log.org"))
+(setq org-agenda-files (list (concat org-directory "/log.org")))
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+(setq org-log-done t)
+
+;; Split org-agenda windows in a reasonable manner
+(setq org-agenda-window-setup 'current-window)
+
+;;;;;;;;;;;;;;;;;
+;; Go Specific ;;
+;;;;;;;;;;;;;;;;;
+(require 'go-mode)
+(require 'company-go)
+(require 'go-eldoc)
+
+;; Set the GOPATH to $HOME/.go
+;; That's what I use as my global GOPATH, because I'm a monster
+;; In the future, maybe I'll get around to running emacs in server mode, then
+;; I won't have to do things like this all the time
+
+(setenv "GOPATH" "$HOME/.go")
+
+;; Go-oracle
+(load-file (concat (getenv "GOPATH") "/src/golang.org/x/tools/cmd/oracle/oracle.el"))
+
+;; Custom go-mode hook
+(add-hook 'go-mode-hook (lambda ()
+  "Custom Go Mode Hook"
+
+  ;; Use goimports instead of go-fmt
+  (setq gofmt-command "goimports")
+
+  ;; Call Gofmt before saving
+  (add-hook 'before-save-hook 'gofmt-before-save)
+
+  ;; Imenu & Speedbar
+  (setq imenu-generic-expression
+        '(("type" "^type *\\([^ \t\n\r\f]*\\)" 1)
+          ("func" "^func *\\(.*\\) {" 1)))
+  (imenu-add-to-menubar "Index")
+  (set (make-local-variable 'company-backends) '(company-go))
+
+  ;; Go-Oracle-Mode
+  (go-oracle-mode)
+
+  ;; Go-eldoc
+  (go-eldoc-setup)
+
+  ;; Key Bindings
+  (local-set-key (kbd "M-.") 'godef-jump)
+  (local-set-key (kbd "C-c t .") 'go-test-current-test)
+  (local-set-key (kbd "C-c t f") 'go-test-current-file)
+  (local-set-key (kbd "C-c t p") 'go-test-current-project)))
 
 ;;;;;;;;;;;;;;
 ;; PHP-Mode ;;
 ;;;;;;;;;;;;;;
-(autoload 'php-mode "php-mode" "Major mode for PHP work." t)
+
+;; Note that there's a php doc in the custom directory loaded from https://gist.github.com/stesie/6564885
+(require 'php-mode)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 (add-hook 'php-mode-hook
-          'php-enable-psr2-coding-style)
-;;           '(flycheck-phpcs-standard "PSR2")
+          (lambda ()
+            (require 'php-extras)
+            (require 'php-doc)
 
-;; Doc block comments
+            (php-enable-psr2-coding-style)
 
-(define-skeleton class-doc-block
-        "Inserting doc block for class"
-        "This is ignoring"
-        "/**\n"
-        " * Short description for class\n"
-        " *\n"
-        " * Long description for class (if any)...\n"
-        " */"
-        "class"
-        '(indent-region (point-min) (point-max))
-        '(indent-according-to-mode)
-)
+            (setq indent-tabs-mode nil)
+            (setq tab-width 4)
+            (setq c-basic-offset 4)
 
-(define-skeleton function-doc-block
-        "Inserting doc block for function/method"
-        "This is ignoring"
-        "/**\n"
-        " * Description for method\n"
-        " *\n"
-        " * @param data_type $parameterName Parameter description\n"
-        " * @return data_type Return value description\n"
-        " */"
-        '(indent-region (point-min) (point-max))
-        '(indent-according-to-mode)
-)
-
-(define-skeleton variable-doc-block
-        "Inserting doc block for variable"
-        nil
-        "/**\n"
-        " * Description for variable - class member\n"
-        " * \n"
-        " * @type data_type \n"
-        " */"
-        '(indent-region (point-min) (point-max))
-        '(indent-according-to-mode)
-)
-
-(add-hook 'php-mode-hook
-        (lambda ()
-        (define-key php-mode-map (kbd "C-c M-c") 'class-doc-block)
-        (define-key php-mode-map (kbd "C-c M-f") 'function-doc-block)
-        (define-key php-mode-map (kbd "C-c M-v") 'variable-doc-block)
-        (RET-behaves-as-LFD))
-        )
+            (setq-local php-insert-doc-access-tag   nil)
+            (setq-local flycheck-phpcs-standard     "PSR2")
+            (setq-local flycheck-phpmd-rulesets     '("codesize" "design" "naming" "unusedcode"))))
