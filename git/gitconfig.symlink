@@ -37,7 +37,7 @@ commit = no
 
 [core]
 excludesfile = /Users/mark/.gitignore
-editor = emacs
+editor = vi
 
 [format]
 pretty = fuller # more detail for "git show"
@@ -53,12 +53,12 @@ ui = true # everybody loves color (except for Linus :( )
 insteadOf = https://github.com/
 
 [difftool "sourcetree"]
-cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-path =
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 
 [mergetool "sourcetree"]
-cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.3/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-trustExitCode = true
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.3/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 
 [http]
 cookiefile = ~/.gitcookies
