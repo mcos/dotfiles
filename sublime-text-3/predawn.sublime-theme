@@ -1,9 +1,0 @@
-[
-    {
-        "class": "sidebar_tree",
-        "row_padding": [10, 2],
-        "indent": 10,
-        "indent_offset": 18,
-        "indent_top_level": false
-    }
-]
