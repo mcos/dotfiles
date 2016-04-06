@@ -1,7 +1,7 @@
 [user]
 name = Mark Costello
 email = mark@markcostello.net
-	signingkey = 0CFDFE8B
+signingkey = 0CFDFE8B
 
 [include]
 # For username / creds / etc
@@ -40,7 +40,7 @@ commit = no
 
 [core]
 excludesfile = /Users/mark/.gitignore
-	editor = /usr/bin/vim
+editor = /usr/bin/vim
 
 [format]
 pretty = fuller # more detail for "git show"
@@ -68,3 +68,5 @@ cookiefile = ~/.gitcookies
 
 [status]
 showUntrackedFiles = all
+[commit]
+gpgsign = true
