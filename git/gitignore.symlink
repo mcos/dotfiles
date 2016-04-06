@@ -7,3 +7,8 @@
 GPATH
 GRTAGS
 GTAGS
+TAGS
+
+# Tern stuff
+.tern-port
+.tern-project

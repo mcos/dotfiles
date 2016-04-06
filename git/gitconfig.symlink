@@ -1,6 +1,7 @@
 [user]
 name = Mark Costello
 email = mark@markcostello.net
+	signingkey = 0CFDFE8B
 
 [include]
 # For username / creds / etc
@@ -17,6 +18,8 @@ brv = branch -v
 brrv = branch -rv
 brd = for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:short) %(authorname) %(refname:short)'  # Shows local branches sorted by date
 who = blame
+lg = log --pretty=format:'%h %ad %<(20)%an %s' --date=short
+lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
 
 [push]
 default = current # this should be the safe default.  Without this, by default, 'git push' will push all branches, possibly pushing unintended changes
@@ -37,7 +40,7 @@ commit = no
 
 [core]
 excludesfile = /Users/mark/.gitignore
-editor = vi
+	editor = /usr/bin/vim
 
 [format]
 pretty = fuller # more detail for "git show"
@@ -62,3 +65,6 @@ insteadOf = https://github.com/
 
 [http]
 cookiefile = ~/.gitcookies
+
+[status]
+showUntrackedFiles = all
