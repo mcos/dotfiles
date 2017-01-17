@@ -20,18 +20,21 @@ brd = for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:s
 who = blame
 lg = log --pretty=format:'%h %ad %<(20)%an %s' --date=short
 lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+prlog = ! "git log --merges --pretty=format:'%s: %b' | sed -E 's/Merge pull request (#[0-9]+) from [^[:space:]]+/\\1/'"
+merged = !git branch --merged | grep -v '^\\*'
+localclean = !git merged | gxargs --no-run-if-empty git branch -d
 
 [push]
 default = current # this should be the safe default.  Without this, by default, 'git push' will push all branches, possibly pushing unintended changes
 
 [merge]
-# This is REALLY useful.  Adds 'original_version' to diffs like so:
+# This is pretty useful.  Adds 'original_version' to diffs like so:
 # <<<<<<<
-# OUR_VERSION
+# MY_CHANGES
 # |||||||
 # ORIGINAL_VERSION
 # =======
-# THEIR_VERSION
+# UPSTREAM_CHANGES
 # >>>>>>>
 conflictstyle = diff3
 defaultToUpstream = true
@@ -70,3 +73,7 @@ cookiefile = ~/.gitcookies
 showUntrackedFiles = all
 [commit]
 gpgsign = true
+
+[rebase]
+  # Show the author in rebases
+  instructionFormat = "(%an <%ae>) %s"
