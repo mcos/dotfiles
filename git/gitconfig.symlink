@@ -19,13 +19,18 @@ brrv = branch -rv
 brd = for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:short) %(authorname) %(refname:short)'  # Shows local branches sorted by date
 who = blame
 lg = log --pretty=format:'%h %ad %<(20)%an %s' --date=short
-lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-prlog = ! "git log --merges --pretty=format:'%s: %b' | sed -E 's/Merge pull request (#[0-9]+) from [^[:space:]]+/\\1/'"
+lg2 = log --pretty=format:'%C(yellow)%h%C(reset) %C(green)%ad%C(reset) %C(red)|%C(reset) %s %C(bold blue)[%an]%C(reset)%C(yellow)%d%C(reset)' --graph --date=short --decorate=full
+# Shows all PRs merged in the repo
+allprs = ! "git log --merges --pretty=format:'%s: %b' | sed -E 's/Merge pull request #([0-9]+) from [^[:space:]]+/\\1/' | sort -r -n -k1 | awk '{print \"#\" $0}'"
+# Shows all PRs merged in the repo since
 merged = !git branch --merged | grep -v '^\\*'
 localclean = !git merged | gxargs --no-run-if-empty git branch -d
+prune = fetch --prune
+# Adds a git remote and a fetch rule for github pull request refs
+ra = !git remote add "$1" "$2" && git config --local --add "remote.$1.fetch" "+refs/pull/*/head:refs/remotes/origin/pr/*" && :
 
 [push]
-default = current # this should be the safe default.  Without this, by default, 'git push' will push all branches, possibly pushing unintended changes
+default = simple # push the target branch to one with the same name in the remote
 
 [merge]
 # This is pretty useful.  Adds 'original_version' to diffs like so:
@@ -49,7 +54,7 @@ editor = /usr/bin/vim
 pretty = fuller # more detail for "git show"
 
 [color]
-ui = true # everybody loves color (except for Linus :( )
+ui = true
 
 [column]
 # This lets "git stat" stack multiple filenames per row (like vanilla 'ls')
@@ -58,22 +63,29 @@ ui = true # everybody loves color (except for Linus :( )
 [url "git@github.com:"]
 insteadOf = https://github.com/
 
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-
-[mergetool "sourcetree"]
-	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.3/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-
 [http]
 cookiefile = ~/.gitcookies
 
 [status]
 showUntrackedFiles = all
+
 [commit]
 gpgsign = true
 
 [rebase]
-  # Show the author in rebases
-  instructionFormat = "(%an <%ae>) %s"
+# Show the author in rebases
+instructionFormat = "(%ar %an <%ae>) %s"
+autostash = true
+autoSquash = true
+
+[stash]
+showPatch = true
+
+[diff]
+  tool = icdiff
+
+[difftool]
+  prompt = false
+
+[difftool "icdiff"]
+  cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE

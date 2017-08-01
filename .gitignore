@@ -1,0 +1,3 @@
+# Ignore private aliases, sensitive work stuff and the like.
+private/
+private/*

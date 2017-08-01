@@ -55,3 +55,7 @@ TAGS
 
 .idea
 .idea/*
+*.iml
+
+# emacs php-autocomplete configs
+.ac-php-conf.json
