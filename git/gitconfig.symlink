@@ -24,10 +24,13 @@ lg2 = log --pretty=format:'%C(yellow)%h%C(reset) %C(green)%ad%C(reset) %C(red)|%
 allprs = ! "git log --merges --pretty=format:'%s: %b' | sed -E 's/Merge pull request #([0-9]+) from [^[:space:]]+/\\1/' | sort -r -n -k1 | awk '{print \"#\" $0}'"
 # Shows all PRs merged in the repo since
 merged = !git branch --merged | grep -v '^\\*'
-localclean = !git merged | gxargs --no-run-if-empty git branch -d
+localclean = !git merged | xargs --no-run-if-empty git branch -d
 prune = fetch --prune
 # Adds a git remote and a fetch rule for github pull request refs
 ra = !git remote add "$1" "$2" && git config --local --add "remote.$1.fetch" "+refs/pull/*/head:refs/remotes/origin/pr/*" && :
+
+# TODO: Rebase between two supplied branches
+rbi = !git rebase -i `git merge-base --fork-point "$1" "$2"` && :
 
 [push]
 default = simple # push the target branch to one with the same name in the remote
@@ -89,3 +92,7 @@ showPatch = true
 
 [difftool "icdiff"]
   cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
+[gpg]
+	program = /usr/local/bin/gpg
+[magit]
+	hideCampaign = true
