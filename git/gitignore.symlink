@@ -58,3 +58,16 @@ TAGS
 
 # emacs php-autocomplete configs
 .ac-php-conf.json
+
+# VS Code
+.vscode
+*.code-workspace
+
+# Flask
+.flaskenv
+
+# Jenv stuff
+.java-version
+
+# Python Tox
+.tox
