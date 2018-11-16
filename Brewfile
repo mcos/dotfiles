@@ -23,7 +23,6 @@ brew "nginx"
 brew "nvm"
 brew "perl"
 brew "wget"
-brew "wxmac"
 brew "zsh"
 
 # Apps
