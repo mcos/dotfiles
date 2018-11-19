@@ -16,7 +16,7 @@ brew "go"
 brew "emacs", args: ["HEAD", "with-cocoa", "with-gnutls"]
 brew "git"
 brew "gnupg"
-brew "java"
+brew "java8"
 brew "maven"
 brew "mysql"
 brew "nginx"
