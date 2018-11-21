@@ -10,7 +10,7 @@
 echo "Administrator privileges are required to set up your OSX defaults."
 sudo -v
 
-# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+# Keep-alive: update existing `sudo` time stamp until install has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Disable the sound effects on boot
@@ -21,6 +21,11 @@ printf "...done\n"
 # Show the ~/Library folder.
 printf "> Showing ~/Library folder..."
 chflags nohidden ~/Library
+printf "...done\n"
+
+# Show the /Volumes folder.
+printf "> Showing /Volumes folder..."
+chflags nohidden /Volumes
 printf "...done\n"
 
 # Increase window resize speed for Cocoa applications
@@ -55,6 +60,11 @@ printf "...done\n"
 printf "> Reveal more info when clicking the clock in the login window..."
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 printf "...done\n"
+
+
+###############################################################################
+# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
+###############################################################################
 
 # Trackpad: enable tap to click for this user and for the login screen
 printf "> Enable tap to click by default..."
@@ -105,7 +115,8 @@ printf "...done\n"
 
 # Set a blazingly fast keyboard repeat rate
 printf "> Set a fast keyboard repeat rate..."
-defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
 printf "...done\n"
 
 # Oh yeah - Metric units by default!
@@ -138,6 +149,17 @@ printf "...done\n"
 printf "> Disable shadow in screenshots..."
 defaults write com.apple.screencapture disable-shadow -bool true
 printf "...done\n"
+
+# Enable subpixel font rendering on non-Apple LCDs
+# Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
+defaults write NSGlobalDomain AppleFontSmoothing -int 1
+
+# Enable HiDPI display modes (requires restart)
+sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
+
+###############################################################################
+# Finder
+###############################################################################
 
 # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
 printf "> Allow quitting of Finder..."
@@ -199,9 +221,10 @@ printf "> Disable warning when changing a file extension..."
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 printf "...done\n"
 
-# Avoid creating .DS_Store files on network volumes
+# Avoid creating .DS_Store files on network volumes or USB volumes
 printf "> Don't create .DS_Store files on network volumes..."
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 printf "...done\n"
 
 # Disable disk image verification
@@ -268,8 +291,26 @@ printf "> Don't rearrange spaces based on recent use..."
 defaults write com.apple.dock mru-spaces -bool false
 printf "...done\n"
 
+# Disable Notification Center and remove the menu bar icon
+launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
+
+# Disable automatic capitalization as it’s annoying when typing code
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+# Disable smart dashes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+# Disable automatic period substitution as it’s annoying when typing code
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# Disable smart quotes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
 ###############################################################################
-# Terminal & iTerm 2                                                          #
+# Terminal
 ###############################################################################
 
 # Only use UTF-8 in Terminal.app
@@ -277,10 +318,26 @@ printf "> Only use UTF-8 in Terminal..."
 defaults write com.apple.terminal StringEncodings -array 4
 printf "...done\n"
 
-# Don’t display the annoying prompt when quitting iTerm
-printf "> Don't display prompt when quitting iTerm..."
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false
-printf "...done\n"
+# Enable Secure Keyboard Entry in Terminal.app
+# See: https://security.stackexchange.com/a/47786/8918
+defaults write com.apple.terminal SecureKeyboardEntry -bool true
+
+# Disable the annoying line marks
+defaults write com.apple.Terminal ShowLineMarks -int 0
+
+###############################################################################
+# SSD-specific tweaks                                                         #
+###############################################################################
+
+# Disable hibernation (speeds up entering sleep mode)
+sudo pmset -a hibernatemode 0
+
+# Remove the sleep image file to save disk space
+sudo rm /private/var/vm/sleepimage
+# Create a zero-byte file instead…
+sudo touch /private/var/vm/sleepimage
+# …and make sure it can’t be rewritten
+sudo chflags uchg /private/var/vm/sleepimage
 
 ###############################################################################
 # Time Machine                                                                #

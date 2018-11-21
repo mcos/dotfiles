@@ -1,7 +1,5 @@
 # Pared down .zshrc
 
-export DOTFILES=$HOME/dotfiles
-
 # use .localrc for secrets
 if [[ -a ~/.localrc ]]
 then
@@ -10,7 +8,7 @@ fi
 
 # all of our zsh files
 typeset -U config_files
-config_files=($DOTFILES/**/*.zsh)
+config_files=($HOME/dotfiles/**/*.zsh)
 
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
