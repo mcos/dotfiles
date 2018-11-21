@@ -9,8 +9,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Require homebrew to be installed
 command -v brew >/dev/null 2>&1 || { echo >&2 "Homebrew is not installed. Install it from https://brew.sh. Exiting."; exit 1; }
 
-# Run OSX install script
-./osx/set-defaults.sh
+# Run macos install script
+./macos/set-defaults.sh
 
 # Install homebrew casks and packages using the Brewfile
 brew bundle

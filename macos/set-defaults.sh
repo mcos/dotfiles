@@ -157,6 +157,35 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 1
 # Enable HiDPI display modes (requires restart)
 sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 
+# Turn text completion off on touchbar (no need for that!)
+defaults write -g NSAutomaticTextCompletionEnabled -bool false
+
+##
+# Control strip (for touchbar)
+##
+
+defaults write com.apple.controlstrip.plist MiniCustomized -array \
+    "com.apple.system.brightness"\
+    "com.apple.system.volume"\
+    "com.apple.system.mute"\
+    "com.apple.system.screen-lock"
+
+defaults write com.apple.controlstrip.plist FullCustomized -array \
+    "com.apple.system.group.brightness"\
+    "com.apple.system.group.keyboard-brightness"\
+    "com.apple.system.group.media"\
+    "com.apple.system.group.volume"\
+    "com.apple.system.screenshot"\
+    "com.apple.system.spotlight"\
+    "com.apple.system.screen-lock"
+
+##
+# Disable Siri
+##
+defaults write com.apple.Siri StatusMenuVisible -bool false
+defaults write com.apple.Siri UserHasDeclinedEnable -bool true
+defaults write com.apple.assistant.support 'Assistant Enabled' 0
+
 ###############################################################################
 # Finder
 ###############################################################################
