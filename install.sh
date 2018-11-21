@@ -12,13 +12,12 @@ command -v brew >/dev/null 2>&1 || { echo >&2 "Homebrew is not installed. Instal
 # Run OSX install script
 ./osx/set-defaults.sh
 
-# Install using the Brewfile
+# Install homebrew casks and packages using the Brewfile
 brew bundle
 
+# Switch to zsh
 ZSH="$(which zsh)"
-
-echo $ZSH >> /etc/shells
-
+sudo grep -qF "$ZSH" /etc/shells || echo "$ZSH"| sudo tee -a /etc/shells
 chsh -s "$(which zsh)"
 
 # Link up all the required files.
