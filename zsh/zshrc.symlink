@@ -1,8 +1,5 @@
 # Pared down .zshrc
 
-# Stop autocorrecting
-DISABLE_CORRECTION="true"
-
 # use .localrc for secrets
 if [[ -a ~/.localrc ]]
 then

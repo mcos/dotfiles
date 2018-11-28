@@ -22,6 +22,7 @@ brew "nvm"
 brew "perl"
 brew "wget"
 brew "zsh"
+brew "z"
 
 # Apps
 cask "1password"
