@@ -17,5 +17,5 @@ git_info() {
 
 local git_state='$(git_info)'
 
-PROMPT="%m %B%~%b ${git_state}
+PROMPT="%B%~%b ${git_state}
 %B❯%b "
