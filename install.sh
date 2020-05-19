@@ -27,6 +27,7 @@ ln -sf $PWD/zsh/zshrc.symlink "$HOME/.zshrc"
 ln -sf $PWD/git/gitconfig.symlink "$HOME/.gitconfig"
 ln -sf $PWD/git/gitignore.symlink "$HOME/.gitignore"
 # gpg
+mkdir -p "$HOME/.gnupg"
 ln -sf $PWD/gpg/gpg-agent.conf.symlink "$HOME/.gnupg/gpg-agent.conf"
 ln -sf $PWD/gpg/gpg.conf.symlink "$HOME/.gnupg/gpg.conf"
 # intellij
