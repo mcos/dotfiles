@@ -32,3 +32,7 @@ ln -sf $PWD/gpg/gpg-agent.conf.symlink "$HOME/.gnupg/gpg-agent.conf"
 ln -sf $PWD/gpg/gpg.conf.symlink "$HOME/.gnupg/gpg.conf"
 # intellij
 ln -sf $PWD/intellij/ideavimrc.symlink "$HOME/.ideavimrc"
+# vscode
+ln -sf $PWD/vscode/settings.json "$HOME/Library/Application\ Support/Code/User/settings.json"
+ln -sf $PWD/vscode/keybindings.json "$HOME/Library/Application\ Support/Code/User/keybindings.json"
+ln -sf $PWD/vscode/snippets "$HOME/Library/Application\ Support/Code/User/"

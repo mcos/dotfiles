@@ -1,0 +1,15 @@
+{
+    "telemetry.enableTelemetry": false,
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "Fira Code",
+    "editor.fontSize": 13,
+    "workbench.colorTheme": "SynthWave '84",
+    "vim.insertModeKeyBindings": [
+        {
+          "before": ["j", "k"],
+          "after": ["<Esc>"]
+        }
+    ],
+    "vim.ignorecase": true,
+    "editor.cursorBlinking": "solid",
+}
