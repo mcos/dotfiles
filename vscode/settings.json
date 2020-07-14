@@ -1,15 +1,30 @@
 {
-    "telemetry.enableTelemetry": false,
-    "editor.fontLigatures": true,
-    "editor.fontFamily": "Fira Code",
-    "editor.fontSize": 13,
-    "workbench.colorTheme": "SynthWave '84",
-    "vim.insertModeKeyBindings": [
-        {
-          "before": ["j", "k"],
-          "after": ["<Esc>"]
-        }
-    ],
-    "vim.ignorecase": true,
-    "editor.cursorBlinking": "solid",
+  "telemetry.enableTelemetry": false,
+  "editor.fontLigatures": true,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontSize": 14,
+  "workbench.colorTheme": "Verdandi Alter",
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "k"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
+  "vim.ignorecase": true,
+  "editor.cursorBlinking": "solid",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
+  "typescript.suggest.completeFunctionCalls": true,
+  "javascript.suggest.completeFunctionCalls": true,
+  "editor.hover.sticky": false
 }

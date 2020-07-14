@@ -26,8 +26,7 @@ allprs = ! "git log --merges --pretty=format:'%s: %b' | sed -E 's/Merge pull req
 merged = !git branch --merged | grep -v '^\\*'
 localclean = !git merged | xargs --no-run-if-empty git branch -d
 prune = fetch --prune
-# Adds a git remote and a fetch rule for github pull request refs
-ra = !git remote add "$1" "$2" && git config --local --add "remote.$1.fetch" "+refs/pull/*/head:refs/remotes/origin/pr/*" && :
+pr  = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
 
 # TODO: Rebase between two supplied branches
 rbi = !git rebase -i `git merge-base --fork-point "$1" "$2"` && :
