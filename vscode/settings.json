@@ -21,10 +21,41 @@
   "files.insertFinalNewline": true,
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.fixAll.tslint": true
   },
   "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
   "typescript.suggest.completeFunctionCalls": true,
   "javascript.suggest.completeFunctionCalls": true,
-  "editor.hover.sticky": false
+  "editor.hover.sticky": false,
+  "cSpell.enableFiletypes": [
+    "plaintext"
+  ],
+  "editor.formatOnSave": false,
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.tabSize": 2
+  },
+  "window.zoomLevel": 0,
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features",
+    "editor.tabSize": 2
+  },
+  "editor.tabSize": 2,
+  // "[javascript]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  //   "editor.formatOnSave": true
+  // },
+  // "[javascriptreact]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  //   "editor.formatOnSave": true
+  // },
+  // "[typescript]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  //   "editor.formatOnSave": true
+  // },
+  // "[typescriptreact]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  //   "editor.formatOnSave": true
+  // }
 }
