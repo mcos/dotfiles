@@ -28,34 +28,22 @@
   "typescript.suggest.completeFunctionCalls": true,
   "javascript.suggest.completeFunctionCalls": true,
   "editor.hover.sticky": false,
-  "cSpell.enableFiletypes": [
-    "plaintext"
-  ],
-  "editor.formatOnSave": false,
   "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features",
     "editor.tabSize": 2
   },
-  "window.zoomLevel": 0,
   "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features",
     "editor.tabSize": 2
   },
   "editor.tabSize": 2,
-  // "[javascript]": {
-  //   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  //   "editor.formatOnSave": true
-  // },
-  // "[javascriptreact]": {
-  //   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  //   "editor.formatOnSave": true
-  // },
-  // "[typescript]": {
-  //   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  //   "editor.formatOnSave": true
-  // },
-  // "[typescriptreact]": {
-  //   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  //   "editor.formatOnSave": true
-  // }
+  "liveshare.authenticationProvider": "GitHub",
+  "prettier.requireConfig": true,
+  "editor.formatOnSave": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "docker.showStartPage": false,
 }
