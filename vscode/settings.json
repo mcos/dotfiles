@@ -6,20 +6,20 @@
   "workbench.colorTheme": "Verdandi Alter",
   "vim.insertModeKeyBindings": [
     {
-      "before": [
-        "j",
-        "k"
-      ],
-      "after": [
-        "<Esc>"
-      ]
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
     }
   ],
   "vim.ignorecase": true,
   "editor.cursorBlinking": "solid",
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
-  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     "source.fixAll.tslint": true
@@ -29,10 +29,12 @@
   "javascript.suggest.completeFunctionCalls": true,
   "editor.hover.sticky": false,
   "[javascript]": {
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.tabSize": 2,
   "liveshare.authenticationProvider": "GitHub",
@@ -46,4 +48,14 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "docker.showStartPage": false,
+  "editor.inlineSuggest.enabled": true,
+  "window.autoDetectHighContrast": false,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": false,
+    "markdown": false
+  },
+  "python.formatting.provider": "none",
+  "security.workspace.trust.untrustedFiles": "open"
 }
