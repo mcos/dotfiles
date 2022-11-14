@@ -1,5 +1,4 @@
 # Pared down .zshrc
-zmodload zsh/zprof
 
 # use .localrc for secrets
 if [[ -a ~/.localrc ]]
@@ -37,4 +36,3 @@ do
   source $file
 done
 
-zprof
