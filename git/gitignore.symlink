@@ -71,3 +71,6 @@ TAGS
 
 # Python Tox
 .tox
+
+Pods2
+Podfile.lock2

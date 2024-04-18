@@ -21,8 +21,8 @@
     "typescriptreact"
   ],
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.tslint": true
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.tslint": "explicit"
   },
   "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
   "typescript.suggest.completeFunctionCalls": true,
@@ -56,6 +56,14 @@
     "plaintext": false,
     "markdown": false
   },
-  "python.formatting.provider": "none",
-  "security.workspace.trust.untrustedFiles": "open"
+  "python.formatting.provider": "black",
+  "security.workspace.trust.untrustedFiles": "open",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
+  "lldb.launch.expressions": "native"
 }

@@ -62,8 +62,17 @@ ui = true
 # This lets "git stat" stack multiple filenames per row (like vanilla 'ls')
 # ui = always
 
-[url "git@github.com:"]
-insteadOf = https://github.com/
+# [url "https://github.com/ReactiveCocoa"]
+#   insteadOf = https://github.com/ReactiveCocoa
+#
+# [url "http://github.com/rnmapbox/maps"]
+#   insteadOf = http://github.com/rnmapbox/maps
+#
+# [url "https://github.com/maplibre"]
+#   insteadOf = https://github.com/maplibre
+#
+# [url "git@github.com:"]
+# insteadOf = https://github.com/
 
 [http]
 cookiefile = ~/.gitcookies
