@@ -5,3 +5,6 @@ An opinionated set of dotfiles based `zsh` and [homebrew](https://brew.sh). Much
 ## Installing
 
 Clone this repo to `$HOME/dotfiles` and run `install.sh`. It'll set `osx` defaults, install the `homebrew` casks and libraries in the `Brewfile`, and set up `zsh`.
+
+## April 2024
+I don't use these anymore.
