@@ -80,9 +80,6 @@ cookiefile = ~/.gitcookies
 [status]
 showUntrackedFiles = all
 
-[commit]
-gpgsign = true
-
 [rebase]
 # Show the author in rebases
 instructionFormat = "(%ar %an <%ae>) %s"
